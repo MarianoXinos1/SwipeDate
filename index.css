@@ -1,0 +1,123 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;                                 /* el tamaño final del elemento no aumentará porque incluye al padding y border */
+}
+
+body{
+  
+    display: grid;
+    place-content: center;                                   /*  propiedad abreviada que combina las propiedades align-content y justify-content en una sola declaración */
+    min-height: 100vh; 
+    overflow: hidden;        
+    user-select: none;  
+    background: #fff;
+}
+
+main{
+    background: url('./photos/iphone.webp') no-repeat ;
+    background-size: contain;                               /* especifica que la imagen de fondo debe escalarse para ajustarse completamente dentro del contenedor */
+    width: 400px;
+    height: 800px;
+    filter: drop-shadow(0 0 10px rgba( 0, 0, 0, 0.3));                      /* sombra a los bordes de la img pero no en la parte transparente que sobra de la img*/
+    display:flex;
+}
+
+section{
+    background: #fff;
+    width: 100%;
+    border-radius: 32px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    padding: 16px 6px;
+    margin: 30px;
+}
+
+header{
+    display: flex;
+    justify-content: center;
+
+    & img {                                                  /* seleccionar un hijo del padre */ 
+        width: 24px;
+        height: 24px;
+    }
+}
+
+footer{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);                  /* crea 5 columnas , con fr  una fracción igual del espacio disponible en el eje horizontal */
+    justify-content: center;                   
+    gap: 12px;
+    padding: 0 24px;
+    width:100%;
+  
+ 
+    
+
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;                                 /* el tamaño final del elemento no aumentará porque incluye al padding y border */
+}
+
+body{
+  
+    display: grid;
+    place-content: center;                                   /*  propiedad abreviada que combina las propiedades align-content y justify-content en una sola declaración */
+    min-height: 100vh; 
+    overflow: hidden;        
+    user-select: none;  
+    background: #e5e5e5;
+}
+
+main{
+    background: url('./photos/iphone.webp') no-repeat ;
+    background-size: contain;                               /* especifica que la imagen de fondo debe escalarse para ajustarse completamente dentro del contenedor */
+    width: 400px;
+    height: 800px;
+    filter: drop-shadow(0 0 10px rgba( 0, 0, 0, 0.3));                      /* sombra a los bordes de la img pero no en la parte transparente que sobra de la img*/
+    display:flex;
+}
+
+section{
+    background: #fff;
+    width: 100%;
+    border-radius: 32px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    padding: 16px 6px;
+    margin: 30px;
+}
+
+header{
+    display: flex;
+    justify-content: center;
+
+    & img {                                                  /* seleccionar un hijo del padre */ 
+        width: 24px;
+        height: 24px;
+    }
+}
+
+footer{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);                  /* crea 5 columnas , con fr  una fracción igual del espacio disponible en el eje horizontal */
+    justify-items: center;          
+    gap: 12px;
+    padding: 0 24px;
+  
+    & button{
+        height: 32px;
+        width: 32px;
+        border-radius: 50%;
+        border: 1px solid #ccc;
+    }
+
+}
+

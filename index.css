@@ -81,10 +81,11 @@ main{
     height: 800px;
     filter: drop-shadow(0 0 10px rgba( 0, 0, 0, 0.3));                      /* sombra a los bordes de la img pero no en la parte transparente que sobra de la img*/
     display:flex;
+    zoom: .95
 }
 
 section{
-    background: #fff;
+    background: #ccc;
     width: 100%;
     border-radius: 32px;
     display: flex;
@@ -114,10 +115,41 @@ footer{
     padding: 0 24px;
   
     & button{
+        background: url( './photos/tinder-icons.webp') no-repeat;
+        background-position: 0px 0px;                                   /* stablecer la posición inicial de una imagen de fondo */
+        background-size: 200px;
         height: 32px;
         width: 32px;
         border-radius: 50%;
         border: 1px solid #ccc;
+        border: 0;
+        cursor: pointer;
+        transition: scale .3s ease;
+
+        &:hover{
+            scale: 1.4;
+        }
+
+        &.undo{
+            background-position: -165px;                             /*  ajusta la posición de la imagen de fondo solo en la dirección horizontal */
+        }
+
+        &.remove{
+            background-position: -124px;
+        }
+
+        &.star{
+            background-position: -84px;
+        }
+
+        &.like{
+            background-position: -42px;
+        }
+
+        &.ray{
+            background-position: -2px;
+        }
+        
     }
 
 }

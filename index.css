@@ -85,7 +85,7 @@ main{
 }
 
 section{
-    background: #ccc;
+    background: #f6f6f6;
     width: 100%;
     border-radius: 32px;
     display: flex;
@@ -131,23 +131,23 @@ footer{
         }
 
         &.undo{
-            background-position: -165px;                             /*  ajusta la posición de la imagen de fondo solo en la dirección horizontal */
+            background-position: -165px 0;                             /*  ajusta la posición de la imagen de fondo solo en la dirección horizontal y 0 la vertical */
         }
 
         &.remove{
-            background-position: -124px;
+            background-position: -124px 0;
         }
 
         &.star{
-            background-position: -84px;
+            background-position: -84px 0;
         }
 
         &.like{
-            background-position: -42px;
+            background-position: -42px 0;
         }
 
         &.ray{
-            background-position: -2px;
+            background-position: -2px 0;
         }
         
     }
@@ -194,7 +194,7 @@ footer{
     & span{
         margin-left: 7px;
         font-size: 20px;
-        line-height: 1.4;
+        line-height: 1.3;
         font-weight: 400;
 
     }

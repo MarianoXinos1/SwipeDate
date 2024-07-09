@@ -1,6 +1,7 @@
 
 let isAnimating = false
-let pullDeltaX = 0                                                          // Delta = distancia hasta x punto (Distancia que se arrastra la card) 
+let pullDeltaX = 0                                                           // Delta = distancia hasta x punto (Distancia que se arrastra la card) 
+const decision_threshold = 100                                                
 
 function startDrag (event) {
     if (isAnimating) return                                                 // Para evitar que la función se ejecute si la animación está activa.
@@ -10,7 +11,7 @@ function startDrag (event) {
 
     // obtener la posicion inicial del mouse                                 // pageX = punto donde apretaste en el eje horizontal de la página, se ve en la consola.
     const startX = event.pageX || event.touches[0].pageX                    // touches[0].pageX = lo mismo pero para dispositivos táctiles.               
-   // console.log(startX);  
+   //Console.log(startX);  
 
     // Para mousedown
     document.addEventListener('mousemove', onMove);                         // mousemove es el evento, onMove es la función que se ejecuta.
@@ -21,48 +22,73 @@ function startDrag (event) {
     document.addEventListener('touchend', onEnd, {passive: true});
 
     
-function onMove (event) {
+    function onMove (event)  {
+        
+        //posicion actual del mouse
+        const currentX= event.pageX || event.touches[0].pageX
+
+        //distancia recorrio el mouse 
+        pullDeltaX = currentX - startX
+        //console.log(pullDeltaX)
+
+        //No hay distancia recorrida
+        if (pullDeltaX === 0) return
+
+        isAnimating = true
+
+        //Calculando grados de rotacion (15 max grados rotacion card)
+        const deg = pullDeltaX / 15                                                          
+
+        // Aplicar la rotacion
+        actualCard.style.transform = `translateX(${pullDeltaX}px) rotate(${deg}deg)`        //tranlate = moverlo hacia la izquierda o derecha
+        
+        actualCard.style.cursor = 'grabbing'                                               // Cambia el cursor a una manito cerrada
     
-    //posicion actual del mouse
-    const currentX= event.pageX || event.touches[0].pageX
+    }
 
-    //distancia recorrio el mouse 
-    pullDeltaX = currentX - startX
-    //console.log(pullDeltaX)
+    function onEnd (event) { 
+        //Eliminamos los eventos
+        document.removeEventListener('mousemove', onMove)                                  
+        document.removeEventListener('mouseup', onEnd)                                      
 
-    //No hay distancia recorrida
-    if (pullDeltaX === 0) return
+        document.removeEventListener('touchmove', onMove)                                     
+        document.removeEventListener('touchend', onEnd)  
+        //console.log('Eventos removidos'); 
+        
+        //saber si el usuario tomo la decision
+        const decisionMade = Math.abs(pullDeltaX) >= decision_threshold                 //  Math.abs = valor absoluto        
+       
 
-    isAnimating = true
+        if(decisionMade){
+            const goRight = pullDeltaX >= 0
+            const goLeft = !goRight
 
-    //Calculando grados de rotacion (15 max grados rotacion card)
-    const deg = pullDeltaX / 15                                                          
+            //console.log('Dirección:', goRight ? 'Derecha' : 'Izquierda'); 
+            
+            //Agregar la clase segun la decision
+            actualCard.classList.add(goRight ? 'go-right' : 'go-left')   
+            actualCard.addEventListener('transitionend', () => {                       // transitionend = es un evento que ocurre cuando una transición CSS termina.
+                actualCard.remove()                                                     
+            }, {once: true})                                                           // {once: true} = solo se ejecuta una vez
+            
+        } else{
+            actualCard.classList.add('reset')                                          //mirar css
+            actualCard.classList.remove('go-right','go-left')
+            //console.log('Reset de la tarjeta'); 
+        }
 
-    // Aplicar la rotacion
-    actualCard.style.transform = `translateX(${pullDeltaX}px) rotate(${deg}deg)`        //tranlate = moverlo hacia la izquierda o derecha
-    
-    actualCard.style.cursor = 'grabbing'                                               // Cambia el cursor a una manito cerrada
-   
+        // Resetea las variables
+        actualCard.addEventListener('transitionend', () => {
+            actualCard.removeAttribute('style')
+            actualCard.classList.remove('reset')
+
+            pullDeltaX= 0
+            isAnimating = false
+            //console.log('Tarjeta reseteada y variables limpiadas'); 
+        }, {once: true})
+        
+    }
 }
-
-function onEnd (event) {
-    document.removeEventListener('mousemove', onMove)                                  // Elimina el evento mousemove
-    document.removeEventListener('mouseup', onEnd)                                      
-
-    document.removeEventListener('touchmove', onMove)                                     
-    document.removeEventListener('touchend', onEnd)              
-    
-    isAnimating = false
-
-    pullDeltaX= 0
-
-    actualCard.style.transform = 'none'
-
-    actualCard.style.cursor = 'grab'                                                   // Cambia el cursor a una manito abierta
-
-}
-}
-
 
 
 

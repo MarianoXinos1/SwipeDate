@@ -5,10 +5,11 @@ const decision_threshold = 100
 
 function startDrag (event) {
     if (isAnimating) return                                                 // Para evitar que la función se ejecute si la animación está activa.
-
+    
     // obtener primer articulo mas cercano que arrastremos
     const actualCard = event.target.closest('article')
-
+    if (!actualCard) return                                                  // Si no hay un articulo, no se ejecuta la función.
+    
     // obtener la posicion inicial del mouse                                 // pageX = punto donde apretaste en el eje horizontal de la página, se ve en la consola.
     const startX = event.pageX || event.touches[0].pageX                    // touches[0].pageX = lo mismo pero para dispositivos táctiles.               
    //Console.log(startX);  
@@ -43,7 +44,15 @@ function startDrag (event) {
         actualCard.style.transform = `translateX(${pullDeltaX}px) rotate(${deg}deg)`        //tranlate = moverlo hacia la izquierda o derecha
         
         actualCard.style.cursor = 'grabbing'                                               // Cambia el cursor a una manito cerrada
-    
+        
+        //Cambiar opacidad segun la eleccion
+        const opacity = Math.abs(pullDeltaX) / 100
+        const isRight = pullDeltaX > 0
+
+        const choiceElement = isRight ? actualCard.querySelector('.choice.yes') : actualCard.querySelector('.choice.nope')
+
+        choiceElement.style.opacity = opacity
+
     }
 
     function onEnd (event) { 
@@ -75,6 +84,10 @@ function startDrag (event) {
             actualCard.classList.add('reset')                                          //mirar css
             actualCard.classList.remove('go-right','go-left')
             //console.log('Reset de la tarjeta'); 
+
+            actualCard.querySelectorAll('.choice').forEach(choice => {
+                choice.style.opacity = 0
+            })
         }
 
         // Resetea las variables

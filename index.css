@@ -17,7 +17,7 @@ body{
 
 
 main{
-    background: url('./photos/iphone.webp') no-repeat ;
+    background: url('./photos/m.webp') no-repeat ;
     background-size: contain;                               /* especifica que la imagen de fondo debe escalarse para ajustarse completamente dentro del contenedor */
     width: 400px;
     height: 800px;
@@ -58,7 +58,7 @@ footer{
     padding: 0 24px;
   
     & button{
-        background: url( './photos/tinder-icons.webp') no-repeat;
+        background: url( './photos/buttons.webp') no-repeat;
         background-position: 0px 0px;                                   /* stablecer la posición inicial de una imagen de fondo */
         background-size: 200px;
         height: 34px;

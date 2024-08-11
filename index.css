@@ -19,11 +19,11 @@ body{
 main{
     background: url('./photos/m.webp') no-repeat ;
     background-size: contain;                               /* especifica que la imagen de fondo debe escalarse para ajustarse completamente dentro del contenedor */
-    width: 400px;
-    height: 800px;
+    width: 320px;
+    height: 640px; 
     filter: drop-shadow(0 0 10px rgba( 0, 0, 0, 0.3));                      /* sombra a los bordes de la img pero no en la parte transparente que sobra de la img*/
     display:flex;
-    zoom: .95
+    position: relative;
 }
 
 section{
@@ -36,12 +36,13 @@ section{
     position: relative;
     gap: 24px;                                              
     padding: 16px 6px;
-    margin: 30px;
+    margin: 24px;
 }
 
 header{
     display: flex;
     justify-content: center;
+    padding-left: 1rem;
 
     & img {                                                  /* seleccionar un hijo del padre */ 
         width: 24px;
@@ -208,3 +209,5 @@ footer{
         
     }   
 }
+
+

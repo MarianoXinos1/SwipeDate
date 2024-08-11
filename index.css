@@ -21,7 +21,6 @@ main{
     background-size: contain;                               /* especifica que la imagen de fondo debe escalarse para ajustarse completamente dentro del contenedor */
     width: 320px;
     height: 640px; 
-    filter: drop-shadow(0 0 10px rgba( 0, 0, 0, 0.3));                      /* sombra a los bordes de la img pero no en la parte transparente que sobra de la img*/
     display:flex;
 }
 

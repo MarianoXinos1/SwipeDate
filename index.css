@@ -23,7 +23,12 @@ main{
     height: 640px; 
     filter: drop-shadow(0 0 10px rgba( 0, 0, 0, 0.3));                      /* sombra a los bordes de la img pero no en la parte transparente que sobra de la img*/
     display:flex;
-    position: relative;
+}
+
+@media (max-width: 768px) {
+    main {
+        transform: scale(0.9);
+    }
 }
 
 section{
@@ -33,7 +38,6 @@ section{
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    position: relative;
     gap: 24px;                                              
     padding: 16px 6px;
     margin: 24px;
